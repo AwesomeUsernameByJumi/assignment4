@@ -1,0 +1,98 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+ 
+class addressType
+{
+public:
+    string streetAddressNum;
+    string streetAddress;
+    string streetDec;
+    string city;
+    string streetInitials;
+    string zipCode;
+};
+ 
+class personType
+{
+public:
+    personType();
+    string lastName;
+    string firstName;
+    int personNum;
+    int personID;
+    string gender;
+    addressType address;
+    string getIntrest1();
+    string getIntrest2();
+    void setIntrest1();
+    void setIntrest2();
+    void print();
+ 
+private:
+    string setInterest1;
+    string setInterest2;
+};
+ 
+personType::personType()
+{
+    firstName = "";
+    lastName = "";
+    personNum = 0;
+    personID = 0;
+    gender = ' ';
+    this->address.streetAddressNum = "";
+    this->address.streetAddress = "";
+    this->address.city = "";
+    this->address.zipCode = "";
+    this->address.streetDec = "";
+}
+
+void personType::setInterest1(string i1)
+{
+    interest1 = i1;
+}
+ 
+void personType::setInterest2(string i2)
+{
+    interest2 = i2;
+}
+ 
+string personType::getInterest1()
+{
+    return interest1;
+}
+ 
+string personType::getInterest2()
+{
+    return interest2
+}
+
+void personType::print()
+{
+    cout << firstName << " " << lastName << " " << personNum << " " << personID << " " <<  address.streetAddressNum << " " <<  address.streetAddress
+    << " " <<  address.streetDec << " " <<  address.city << " " <<  address.streetInitials << " " <<  address.zipCode << " " <<  gender << " " <<  getInterest1()
+    << " " <<  getInterest2() << endl;
+}
+
+int main()
+{
+    personType members[6];
+    string x, i1, i2;
+    ifstream myfile;
+    myfile.open("infile.txt");
+    for( int i = 0; i < 6; i++)
+    {
+        myfile >> members[i].lastName  >> members[i].firstName >> members [i].personNum >> 
+            members[i].personID >> members [i].address.streetAddressNum >> members[i].address.streetAddress >> members [i].address.streetDec >>  members[i].address.city >> 
+            members[i].address.stateInitials >>  members[i].address.zipCode >> members [i].gender;
+        myfile>> i1 >> i2; 
+        members [i].setInterest1(i1);
+        members [i].setInterest2(i2);
+        members [i].print();
+    }    
+    myfile.close();
+    system("pause");    
+    return 0;
+}
